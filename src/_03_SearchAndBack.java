@@ -25,7 +25,7 @@ public class _03_SearchAndBack {
         WebElement searchCountLocator = driver.findElement(By.cssSelector("#searchMessageContainer > div > span"));
         String searchCountText =  searchCountLocator.getText();
         System.out.println("searchCountText = " + searchCountText);
-        //Thread.sleep(3000);
+        Thread.sleep(3000);
 
         String strUrl = driver.getCurrentUrl();
         System.out.println("Current Page URL = " + strUrl);
