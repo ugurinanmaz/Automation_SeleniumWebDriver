@@ -27,6 +27,7 @@ public class _01_SendKeysBlockAds {
         permanentAddress.sendKeys("Testing Permanent Address");
         Thread.sleep(2000);
         WebElement submit = driver.findElement(By.id("submit"));
+
         JavascriptExecutor js = (JavascriptExecutor) driver;
         // Scroll down by 2000 pixels
         js.executeScript("window.scrollBy(0,300)");
