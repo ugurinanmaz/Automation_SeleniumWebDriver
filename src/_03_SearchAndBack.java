@@ -1,17 +1,18 @@
+import Utils.BaseStaticDrivers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class _03_SearchAndBack {
+public class _03_SearchAndBack extends BaseStaticDrivers {
     public static void main(String[] args) throws InterruptedException {
 
+/*        System.setProperty("webdriver.gecko.driver","C:\\Users\\HPInc\\Documents\\Selenium\\geckodriver-v0.31.0-win64\\geckodriver.exe");
+        WebDriver driver = new FirefoxDriver();*/
 
-
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\inanmaz\\OneDrive - HP Inc\\Documents\\Selenium\\chromedriver_win32\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
@@ -21,7 +22,7 @@ public class _03_SearchAndBack {
 
         WebElement searchBar = driver.findElement(By.id("inputValEnter"));
         searchBar.sendKeys(searchText);
-        //Thread.sleep(3000);
+
         driver.findElement(By.cssSelector(".searchTextSpan")).click();
 
         WebElement searchCountLocator = driver.findElement(By.cssSelector("#searchMessageContainer > div > span"));
@@ -42,7 +43,7 @@ public class _03_SearchAndBack {
 
         WebElement currentValue = driver.findElement(By.id("inputValEnter"));
         String currentValueText = currentValue.getAttribute("value");
-        System.out.println(currentValueText);
+        //System.out.println(currentValueText);
 
         if (searchText.equals(currentValueText)){
             System.out.println("Passed!");
@@ -50,13 +51,7 @@ public class _03_SearchAndBack {
             System.out.println("Failed!");
         }
 
-        driver.quit();
-
-
-
-
-
-
+        WaitAndTearDown();
 
     }
 }

@@ -1,14 +1,13 @@
+import Utils.BaseStaticDrivers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class _01_SendKeysBlockAds {
-    public static void main(String[] args) throws InterruptedException {
+public class _01_SendKeysBlockAds extends BaseStaticDrivers {
+    public static void main(String[] args) {
 
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\inanmaz\\OneDrive - HP Inc\\Documents\\Selenium\\chromedriver_win32\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+/*        System.setProperty("webdriver.gecko.driver","C:\\Users\\HPInc\\Documents\\Selenium\\geckodriver-v0.31.0-win64\\geckodriver.exe");
+        WebDriver driver = new FirefoxDriver();*/
 
         driver.manage().window().maximize();
 
@@ -25,7 +24,7 @@ public class _01_SendKeysBlockAds {
 
         WebElement permanentAddress = driver.findElement(By.id("permanentAddress"));
         permanentAddress.sendKeys("Testing Permanent Address");
-        Thread.sleep(2000);
+
         WebElement submit = driver.findElement(By.id("submit"));
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -44,14 +43,7 @@ public class _01_SendKeysBlockAds {
         System.out.println(cAddress.getText().substring(cAddress.getText().indexOf(':')+1));
         System.out.println(pAddress.getText().substring(pAddress.getText().indexOf(':')+1));
 
-        driver.quit();
-
-
-
-
-
-
-
+        WaitAndTearDown();
 
     }
 }

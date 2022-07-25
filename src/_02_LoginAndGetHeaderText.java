@@ -1,15 +1,17 @@
+import Utils.BaseStaticDrivers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class _02_LoginAndGetHeaderText {
+public class _02_LoginAndGetHeaderText extends BaseStaticDrivers {
     public static void main(String[] args) {
 
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\inanmaz\\OneDrive - HP Inc\\Documents\\Selenium\\chromedriver_win32\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
 
-        driver.manage().window().maximize();
+/*        System.setProperty("webdriver.gecko.driver","C:\\Users\\HPInc\\Documents\\Selenium\\geckodriver-v0.31.0-win64\\geckodriver.exe");
+        WebDriver driver = new FirefoxDriver();*/
+
 
         driver.get("https://demo.applitools.com/");
 
@@ -30,12 +32,7 @@ public class _02_LoginAndGetHeaderText {
 
         System.out.println("strUrl = " + strUrl);
 
-        driver.quit();
-
-
-
-
-
+        WaitAndTearDown();
 
     }
 }
