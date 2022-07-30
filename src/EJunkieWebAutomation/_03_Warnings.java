@@ -42,8 +42,6 @@ public class _03_Warnings {
         wait.until(ExpectedConditions.visibilityOf(payButton));
         payButton.click();
 
-//        Thread.sleep(2000);
-
 //        WebElement invalidPay = driver.findElement(By.xpath("//*[@id='SnackBar']/span"));
         //wait.until(ExpectedConditions.visibilityOf(invalidPay));
 
@@ -51,8 +49,6 @@ public class _03_Warnings {
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='SnackBar']/span")));
 
         String invalidPayText = invalidPay.getText();
-
-        //System.out.println(invalidPayText);
 
         if (invalidPayText.equals(invalidVerify)){
             System.out.println("Passed");

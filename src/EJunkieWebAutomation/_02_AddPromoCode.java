@@ -41,18 +41,13 @@ public class _02_AddPromoCode {
         wait.until(ExpectedConditions.visibilityOf(applyPromoButton));
         applyPromoButton.click();
 
-//        Thread.sleep(2000);
-
 //        WebElement invalidPromo = driver.findElement(By.xpath("//*[@id='SnackBar']//span[text()='Invalid promo code']"));
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='SnackBar']//span[text()='Invalid promo code']")));
 
         WebElement invalidPromo = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='SnackBar']/span")));
 
-
         String invalidPromoText = invalidPromo.getText();
-
-        //System.out.println(invalidPromoText);
 
         if (invalidPromoText.equals(invalidVerify)){
             System.out.println("Passed");
