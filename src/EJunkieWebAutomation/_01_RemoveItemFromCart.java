@@ -27,9 +27,7 @@ public class _01_RemoveItemFromCart {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         WebElement iFrame1 = driver.findElement(By.xpath("(//iframe[@class='EJIframeV3 EJOverlayV3'])[1]"));
-
         wait.until(ExpectedConditions.visibilityOf(iFrame1));
-
         driver.switchTo().frame(iFrame1);
 
         WebElement addedCartItem = driver.findElement(By.xpath("//*[@id=\"Overlay\"]/div/div[2]/div/div[2]/div[1]/span"));
@@ -44,19 +42,20 @@ public class _01_RemoveItemFromCart {
         wait.until(ExpectedConditions.visibilityOf(removeButton));
         removeButton.click();
 
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
 
         WebElement continueShoppingButton = driver.findElement(By.xpath("//button[@class ='Continue-Button Close-Cart']"));
-         continueShoppingButton.click();
+        wait.until(ExpectedConditions.visibilityOf(continueShoppingButton));
+        continueShoppingButton.click();
 
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         driver.switchTo().parentFrame();
 
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
 
-        WebElement verifyItemAfterRemoving = driver.findElement(By.xpath("(//span[@id='cart_item_nos'])[2]"));
+        WebElement verifyItemAfterRemoving = driver.findElement(By.id("cart_item_nos"));
+        wait.until(ExpectedConditions.visibilityOf(verifyItemAfterRemoving));
         String ItemCartTextAfterRemoving = verifyItemAfterRemoving.getText();
-        System.out.println("ItemCartTextAfterRemoving = " + ItemCartTextAfterRemoving);
 
         if (ItemCartTextAfterRemoving.equals(cartItemsAfterRemoving)){
             System.out.println("Passed");
