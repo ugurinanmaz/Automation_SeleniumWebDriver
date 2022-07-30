@@ -48,7 +48,6 @@ public class _01_RemoveItemFromCart {
 
         driver.switchTo().parentFrame();
 
-
         WebElement verifyItemAfterRemoving = driver.findElement(By.id("cart_item_nos"));
         wait.until(ExpectedConditions.visibilityOf(verifyItemAfterRemoving));
         String ItemCartTextAfterRemoving = verifyItemAfterRemoving.getText();
