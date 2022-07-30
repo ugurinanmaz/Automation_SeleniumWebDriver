@@ -29,23 +29,30 @@ public class _02_AddPromoCode {
         wait.until(ExpectedConditions.visibilityOf(iFrame1));
         driver.switchTo().frame(iFrame1);
 
-        WebElement addPromoButton = driver.findElement(By.cssSelector("button[class='Apply-Button " +
-                "Show-Promo-Code-Button']"));
+        WebElement addPromoButton = driver.findElement(By.cssSelector("button[class='Apply-Button Show-Promo-Code-Button']"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[class='Apply-Button Show-Promo-Code-Button']")));
         addPromoButton.click();
 
         WebElement promoInput = driver.findElement(By.cssSelector("input[class='Promo-Code-Value']"));
+        wait.until(ExpectedConditions.visibilityOf(promoInput));
         promoInput.sendKeys("123456789");
 
         WebElement applyPromoButton = driver.findElement(By.cssSelector("button[class='Promo-Apply']"));
+        wait.until(ExpectedConditions.visibilityOf(applyPromoButton));
         applyPromoButton.click();
 
-        Thread.sleep(2000);
+//        Thread.sleep(2000);
 
-        WebElement invalidPromo = driver.findElement(By.cssSelector("div[id='SnackBar']>span"));
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[id='SnackBar']>span")));
+//        WebElement invalidPromo = driver.findElement(By.xpath("//*[@id='SnackBar']//span[text()='Invalid promo code']"));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='SnackBar']//span[text()='Invalid promo code']")));
+
+        WebElement invalidPromo = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='SnackBar']/span")));
+
+
         String invalidPromoText = invalidPromo.getText();
 
-        System.out.println(invalidPromoText);
+        //System.out.println(invalidPromoText);
 
         if (invalidPromoText.equals(invalidVerify)){
             System.out.println("Passed");

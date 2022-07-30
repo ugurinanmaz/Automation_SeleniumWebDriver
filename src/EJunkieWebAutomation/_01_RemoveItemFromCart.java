@@ -42,16 +42,12 @@ public class _01_RemoveItemFromCart {
         wait.until(ExpectedConditions.visibilityOf(removeButton));
         removeButton.click();
 
-        //Thread.sleep(2000);
-
         WebElement continueShoppingButton = driver.findElement(By.xpath("//button[@class ='Continue-Button Close-Cart']"));
         wait.until(ExpectedConditions.visibilityOf(continueShoppingButton));
         continueShoppingButton.click();
 
-        //Thread.sleep(2000);
         driver.switchTo().parentFrame();
 
-        //Thread.sleep(2000);
 
         WebElement verifyItemAfterRemoving = driver.findElement(By.id("cart_item_nos"));
         wait.until(ExpectedConditions.visibilityOf(verifyItemAfterRemoving));
