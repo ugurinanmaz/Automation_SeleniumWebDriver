@@ -8,20 +8,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class _04_PaymentStepsNegative extends BaseStaticDrivers {
+public class _05_PaymentStepsPositive extends BaseStaticDrivers {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
-        String invalidVerify = "Your card number is invalid.";
-        String cardNumber = "1111 1111 1111 1111";
+
+        String confirmation = "your order is confirmed. Thank you!";
+        String cardNumber = "4242 4242 4242 4242";
         String email = "test1234@gmail.com";
         String nameOnCArd = "Ninja";
         String phone = "9876543221";
-        String MMYY = "0125";
-        String CVC = "444";
+        String MMYY = "1222";
+        String CVC = "000";
 
         driver.get("https://shopdemo.e-junkie.com/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         WebElement addToCart = driver.findElement(By.xpath("//*[@id='products']/div[1]/div/div[2]/a/div/div[2]/button"));
         addToCart.click();
@@ -59,7 +60,6 @@ public class _04_PaymentStepsNegative extends BaseStaticDrivers {
         wait.until(ExpectedConditions.visibilityOf(cardNumberInput));
         cardNumberInput.sendKeys(cardNumber);
 
-
         WebElement MMYYInput = driver.findElement(By.cssSelector("input[placeholder='MM / YY'][inputmode='numeric']"));
         wait.until(ExpectedConditions.visibilityOf(MMYYInput));
         MMYYInput.sendKeys(MMYY);
@@ -67,15 +67,24 @@ public class _04_PaymentStepsNegative extends BaseStaticDrivers {
         WebElement CVCInput = driver.findElement(By.cssSelector("input[placeholder='CVC'][inputmode='numeric']"));
         wait.until(ExpectedConditions.visibilityOf(CVCInput));
         CVCInput.sendKeys(CVC);
+        //cardframe end
 
+        //switchTo back frame
         driver.switchTo().parentFrame();
 
-        WebElement invalidCardWarning = new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='SnackBar']/span")));
+        WebElement payButton = driver.findElement(By.cssSelector("button[class='Pay-Button']"));
+        wait.until(ExpectedConditions.visibilityOf(payButton));
+        payButton.click();
 
-        String validationOfInvalidCardText = invalidCardWarning.getText();
+        //switchTo homepage
+        driver.switchTo().defaultContent();
 
-        if (validationOfInvalidCardText.equals(invalidVerify)){
+        WebElement confirmationMessage = new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()=' your order is confirmed. Thank you!']")));
+
+        String confirmationMessageText = confirmationMessage.getText();
+
+        if (confirmationMessageText.equals(confirmation)){
             System.out.println("Passed");
         } else {
             System.out.println("Failed");
@@ -84,5 +93,4 @@ public class _04_PaymentStepsNegative extends BaseStaticDrivers {
         driver.quit();
 
     }
-
 }
